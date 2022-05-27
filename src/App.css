@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.cards {
+  width: 60%;
+  margin: auto;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+}
+
+.title, .turns {
+  text-align: center;
+}
+
+.new-game-button {
+  display: block;
+  margin: auto;
+}
