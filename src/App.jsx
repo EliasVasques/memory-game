@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Card from "./components/Card";
 
-const cardBack = "src/img/card-back.png";
 function App() {
+  const cardBack = "src/img/card-back.png";
   const [images, setImages] = useState([
     {
       src: "src/img/brook-1.png",
@@ -95,23 +95,25 @@ function App() {
   const [countTurns, setCountTurns] = useState(0);
 
   useEffect(() => {
-    if (isTwoCardsOpen()) {
-      setTimeout(() => handleTryingTwoCards(), 1000)
-      setCountTurns( turns => turns + 1 )
+    if (numberTryingCards() == 2) {
+      setTimeout(() => handleTryingTwoCards(), 1000);
+      setCountTurns((turns) => turns + 1);
     }
   }, [images]);
 
-  const isTwoCardsOpen = () => {
-    return images.filter((img) => img.trying).length == 2;
+  const numberTryingCards = () => {
+    return images.filter(img => img.trying).length;
   };
 
   const flipCard = (id) => {
-    setImages(
-      images.map((img) => {
-        if (img.id == id) return { ...img, trying: true };
-        return img;
-      })
-    );
+    if (numberTryingCards() < 2) {
+      setImages(
+        images.map((img) => {
+          if (img.id == id) return { ...img, trying: true };
+          return img;
+        })
+      );
+    }
   };
 
   const cardsIsEqual = () => {
@@ -120,32 +122,29 @@ function App() {
     return trying[0].name == trying[1].name;
   };
 
-  const setOpenAllCards = ( value ) => {
-    setImages(images.map((img) => {
-        return { ...img, open: value }
-    }))
-  }
+  const allCardsClosed = () => {
+    const allImagesOpenFalse = images.map((img) => {
+      console.log({ ...img, open: false });
+      return { ...img, open: false };
+    });
+    return allImagesOpenFalse;
+  };
 
-  const shuffleCards = () => {
-    const newImages = [...images];
-    //console.log(newImages)
-    for(let i = 0; i < images.length; i++) {
+  const setCardsShuffled = (cards) => {
+    for (let i = 0; i < images.length; i++) {
       const randomPosition = Math.floor(Math.random() * (images.length - 1));
-      
-      const aux = newImages[randomPosition];
-      newImages[randomPosition] = newImages[i];
-      newImages[i] = aux;
+
+      const aux = cards[randomPosition];
+      cards[randomPosition] = cards[i];
+      cards[i] = aux;
     }
-    setImages(newImages);
-  }
+    setImages(cards);
+  };
 
   const handleNewGameButton = () => {
-    // não esquecer de embrarlhar
-    shuffleCards()
-    setOpenAllCards(false);
-    setCountTurns(0)
-
-  }
+    setCountTurns(0);
+    setCardsShuffled(allCardsClosed());
+  };
 
   const handleTryingTwoCards = () => {
     if (cardsIsEqual()) {
@@ -162,30 +161,31 @@ function App() {
         })
       );
     }
-    
   };
 
   return (
     <>
-      <h1 className="title">Title</h1>
-      <button 
-        className="new-game-button" 
-        onClick={handleNewGameButton}>
-          New Game
-      </button>
+      <header>
+        <img src="src/img/title-img.png" alt="" className="title-img" />
+        <button className="new-game-button" onClick={handleNewGameButton}>
+          NEW GAME
+        </button>
+      </header>
 
-      <div className="cards">
-        {images.map((img) => (
-          <Card
-            src={img.open || img.trying ? img.src : cardBack}
-            key={img.id}
-            id={img.id}
-            onClick={flipCard}
-          />
-        ))}
+      <div className="background-image-cards">
+        <div className="cards">
+          {images.map((img) => (
+            <Card
+              src={img.open || img.trying ? img.src : cardBack}
+              key={img.id}
+              id={img.id}
+              onClick={flipCard}
+            />
+          ))}
+        </div>
       </div>
-
-      <p className="turns">Turns: {countTurns}</p>
+      
+      <p className="turns">TURN: <span>{countTurns}</span></p>
     </>
   );
 }

@@ -1,9 +1,9 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.background-image-cards {
+  background-image: url("src/img/background-image.webp");
+  background-repeat: no-repeat;
+  background-size: 80%;
+  background-position: center;
 }
-
 .cards {
   width: 60%;
   margin: auto;
@@ -14,11 +14,48 @@
   justify-content: center;
 }
 
-.title, .turns {
+.turns {
   text-align: center;
+  color: #24201F;
+  font-size: 20px;
+}
+
+.turns span {
+  font-weight: bolder;
 }
 
 .new-game-button {
+  font-family: 'Tiro Devanagari Marathi', serif;
+  font-size: 19px;
+  font-weight: 600;
+  cursor: pointer;
+
+  color: #007CC1;
+  box-shadow: 4px 4px #BBE7FC;
+  background-color: #FFFFFD;
+
+  border: none;
+  border-radius: 5px;
+
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+  padding: 1px;
+}
+
+.title-img {
+  width: 250px;
   display: block;
   margin: auto;
 }
+
+/* CORES
+  #BBE7FC
+  #FFFFFD
+  #FF3F44
+  #007CC1 
+  #FFBB2A
+*/
+
+
+
