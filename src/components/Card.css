@@ -1,7 +1,8 @@
 .card {
     width: 140px;
     height: 140px;
-    border-radius: 10px;
+    
+    border: 1px solid #FFBB2A;
 
     margin: 4px;
     object-fit: none;

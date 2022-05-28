@@ -124,8 +124,7 @@ function App() {
 
   const allCardsClosed = () => {
     const allImagesOpenFalse = images.map((img) => {
-      console.log({ ...img, open: false });
-      return { ...img, open: false };
+      return { ...img, open: false, trying: false };
     });
     return allImagesOpenFalse;
   };

@@ -31,7 +31,7 @@
   cursor: pointer;
 
   color: #007CC1;
-  box-shadow: 4px 4px #BBE7FC;
+  box-shadow: 1px 1px #BBE7FC;
   background-color: #FFFFFD;
 
   border: none;
@@ -40,7 +40,7 @@
   display: block;
   margin: auto;
   margin-bottom: 10px;
-  padding: 1px;
+  padding-right: 3px;
 }
 
 .title-img {
@@ -55,6 +55,7 @@
   #FF3F44
   #007CC1 
   #FFBB2A
+  #24201F
 */
 
 
